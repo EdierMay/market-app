@@ -25,6 +25,10 @@ public class Compras {
     @Column(name="medio_pago")
     private Double medioPago;
 
+    @ManyToOne
+    @JoinColumn(name ="id_cliente",insertable=false, updatable = false)
+    private Cliente cliente;
+
 
     private Integer comentario;
 
