@@ -25,5 +25,5 @@ public class Categoria {
         return IdCategoria;
     }
 
-    publi
+
 }
