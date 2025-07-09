@@ -19,11 +19,20 @@ public interface ProductMapper {
             @Mapping(source = "precioVenta", target = "price"),
             @Mapping(source = "cantidadStock", target = "stock"),
             @Mapping(source = "estado", target = "active"),
-            @Mapping(source = "categoria", target = "category"),
+            @Mapping(source = "categoria", target = "category")
     })
     Product toProduct(Producto producto);
     List<Product> toProducts(List<Producto> productos);
-
-    @InheritInverseConfiguration
-    @Mapping(target = "codigoBarras", ignore = true)
-    Producto toProducto(Product product);}
+    @Mappings({
+            // Aquí ignoramos el ID para evitar errores al insertar nuevos productos
+            @Mapping(target = "idProducto", ignore = true),
+            @Mapping(source = "name", target = "nombre"),
+            @Mapping(source = "categoryId", target = "idCategoria"),
+            @Mapping(source = "price", target = "precioVenta"),
+            @Mapping(source = "stock", target = "cantidadStock"),
+            @Mapping(source = "active", target = "estado"),
+            @Mapping(target = "codigoBarras", ignore = true),
+            @Mapping(target = "categoria", ignore = true)
+    })
+    Producto toProducto(Product product);
+}
