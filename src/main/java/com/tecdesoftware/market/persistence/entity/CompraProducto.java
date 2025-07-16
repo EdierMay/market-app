@@ -1,30 +1,31 @@
 package com.tecdesoftware.market.persistence.entity;
+// Importación de persistencia de datos
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "compras_productos")
+@Table (name="compras_productos")
 public class CompraProducto {
 
     @EmbeddedId
     private CompraProductoPK id;
 
     private Integer cantidad;
-
     private Double total;
+    private Boolean estado;
 
-    private boolean estado;
-
+    //Llave compuesta
+    //Final de relación con compra
     @ManyToOne
-    @MapsId("idCompra")  // Usa el atributo de la clave compuesta
-    @JoinColumn(name = "id_compra", insertable = false, updatable = false)
+    @MapsId("idCompra") // Enlaza con el campo del embeddable
+    @JoinColumn(name="id_compra", insertable=false, updatable=false)
     private Compra compra;
 
     @ManyToOne
-    @MapsId("idProducto")  // Usa el atributo de la clave compuesta
-    @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+    @MapsId("idProducto") // Enlaza con el campo del embeddable
+    @JoinColumn(name="id_producto", insertable=false, updatable=false)
     private Producto producto;
 
-    // Getters y Setters
     public CompraProductoPK getId() {
         return id;
     }
@@ -49,11 +50,11 @@ public class CompraProducto {
         this.total = total;
     }
 
-    public boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -72,4 +73,7 @@ public class CompraProducto {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
+
+
 }

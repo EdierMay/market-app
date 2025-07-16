@@ -1,5 +1,6 @@
 package com.tecdesoftware.market.persistence.entity;
 // Importación de persistencia de datos
+
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -27,8 +28,8 @@ public class Compra {
     @ManyToOne
     @JoinColumn(name = "id_cliente", insertable=false, updatable=false)
     private Cliente cliente;
-
-    @OneToMany(mappedBy="compra")
+    //esto me va a decir cuantos productos se compraron
+    @OneToMany(mappedBy="compra", cascade={CascadeType.ALL})
     private List<CompraProducto> productos;
 
 
